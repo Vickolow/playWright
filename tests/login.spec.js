@@ -4,10 +4,11 @@ test('login test', async  ({browser})=>{
     const context = await browser.newContext()
     const page = await context.newPage()
 
+    // Visit the URL Saucedemo
     await page.goto('https://www.saucedemo.com/')
 
-    // css selector tagname#id id, classname or class [attribute='value'] flaky text parentTagename childTagname
-    // test='value'
+
+   // Login 
     await page.locator('.form_input').first().fill('standard_user')
     await page.locator('[data-test="password"]').fill('secret_sauce')
     await page.locator('#login-button').click()
