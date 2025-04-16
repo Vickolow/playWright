@@ -8,7 +8,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
-  reporter: 'html',
+  reporter: 'list',
   
   use: {
     retries: 2,
@@ -20,9 +20,31 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        headless: true,
+        screenshot: 'only-on-failure',
+        trace: 'retain-on-failure',
+        video: 'retain-on-failure',
+        viewport: {width:390, height:844},
+        ignoreHTTPSErrors: true,
+        permissions: ['geolocation'],
+        ...devices['Desktop Chrome'], 
+        Worker: 5
+    },
+    },
+    {
+      name: 'webkit',
+      use: {
+        // browserName: 'webkit',
+        headless: true,
+        screenshot: 'on',
+        ...devices['Desktop Safari']
+      }
     }
-  ]
-
+    // {
+    //   name: 'firefox',
+    //   use: {...devices['Desktop Firefox'] },
+    // },
+  ],
 });
 

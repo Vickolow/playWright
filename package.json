@@ -2,13 +2,18 @@
   "name": "anstplaywright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:web": "npm playwright test --config playwright-global.config.js --grep @UITEST",
+    "test:ui": "npx playwright test tests/sauce-demo-login.spec.js",
+    "test:compotent": "npx playwright test --grep @COMPONENT"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.51.0",
-    "@types/node": "^22.13.10"
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.13.10",
+    "allure-playwright": "^3.2.1"
   }
 }
